@@ -1,0 +1,1031 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Contacts",
+        "requires": [
+            "Ext.MessageBox",
+            "Ext.ActionSheet"
+        ],
+        "stores": [
+            "MyJsonPStore",
+            "MyDealsStore",
+            "MyJsonPStore1",
+            "UserPreferences"
+        ]
+    },
+    "designerId": "12f4e105-fe10-4110-a7c7-4be456e0092e",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "contactinfo",
+                "selector": "contactinfo",
+                "xtype": "contactinfo"
+            },
+            "name": "contactinfo",
+            "designerId": "aaf3562e-9dd8-4774-b619-db3a85a3c662"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "contactlist",
+                "selector": "contactlist",
+                "xtype": "contactlist"
+            },
+            "name": "contactlist",
+            "designerId": "b0dbf22d-ae16-4210-80ea-da98cf28a963"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "dataview",
+                "designer|targetType": "Ext.dataview.DataView",
+                "fn": "onContactItemTap",
+                "implHandler": [
+                    "",
+                    "",
+                    "var info = this.getContactinfo();",
+                    "info.setRecord(record);",
+                    "Ext.Viewport.setActiveItem(info);",
+                    "//console.log(info);"
+                ],
+                "name": "itemtap"
+            },
+            "name": "onContactItemTap",
+            "designerId": "9019be36-ff75-4ffc-912b-e3ff75e854d6"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "button#infoBackBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "onInfoBackBtnTapHome",
+                "implHandler": [
+                    "//workaround to fix the warning of destroy element in deleteDeals",
+                    "/*var el = document.getElementById('ListOfDeals');",
+                    "  el.parentNode.removeChild(el);",
+                    "var btn = document.getElementById('DeleteDeal');",
+                    "\tbtn.parentNode.removeChild(btn);*/",
+                    "/*var ds = Ext.StoreManager.lookup('MyJsonPStore');",
+                    "ds.clearFilter() ;*/",
+                    "",
+                    "Ext.Viewport.setActiveItem(0);",
+                    "",
+                    "var store = Ext.getStore('UserPreferences');",
+                    "",
+                    "                var records= [];",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "                var ds = Ext.getStore('MyJsonPStore1');",
+                    "                ds.clearFilter();",
+                    "               //store.clearFilter();",
+                    "",
+                    "",
+                    "",
+                    "               store.each(function(rec)",
+                    "                {",
+                    "",
+                    "",
+                    "",
+                    "                        if(rec.get('isFavorite')===true) {",
+                    "",
+                    "                            records.push(rec.get('customerId'));",
+                    "",
+                    "",
+                    "                        }",
+                    "                    else {",
+                    "                        Ext.Array.remove(records,rec.get('customerId'));",
+                    "                    }",
+                    "",
+                    "",
+                    "",
+                    "                });",
+                    "",
+                    "",
+                    "                ds.filterBy(function(record){",
+                    "                    return Ext.Array.indexOf(records, record.get('customerId')) !== -1;",
+                    "",
+                    "                                                      }, this);",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "name": "onInfoBackBtnTapHome",
+            "designerId": "7178feed-9d27-44dd-b23b-28e93c9f757c"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "contactpic",
+                "designer|targetType": "Ext.picker.Picker",
+                "fn": "onContactPickerChange",
+                "implHandler": [
+                    "var currentForm = Ext.Viewport.getActiveItem();\r",
+                    "var record = currentForm.getRecord();\r",
+                    "if (record) {\r",
+                    "    record.set('picture', value);\r",
+                    "    record.commit();\r",
+                    "    currentForm.setRecord(record);\r",
+                    "}\r",
+                    ""
+                ],
+                "name": "change"
+            },
+            "name": "onContactPickerChange",
+            "designerId": "e4509ca3-bc1e-47aa-99d1-23415c289449"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "list",
+                "designer|targetType": "Ext.dataview.List",
+                "fn": "onListActivate",
+                "implHandler": [
+                    "var ds = Ext.StoreManager.lookup('MyJsonPStore');",
+                    "ds.clearFilter();"
+                ],
+                "name": "activate"
+            },
+            "name": "onListActivate",
+            "designerId": "e9c9c5a8-4919-40d1-98ba-d7b517a585d6"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "dealsinfo",
+                "selector": "dealsinfo",
+                "xtype": "listofdeals"
+            },
+            "name": "dealsinfo",
+            "designerId": "88a938c1-6db0-485c-bba1-1efb722c1a6c"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "dealpicture",
+                "selector": "dealpicture",
+                "xtype": "dealpicture"
+            },
+            "name": "dealpicture",
+            "designerId": "d13824b8-452d-44e4-b5ed-859bca7c4f5d"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "button#dealBackBtn",
+                "designer|params": [
+                    "button",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.Button",
+                "fn": "onDealBackBtnTap",
+                "implHandler": [
+                    "",
+                    "",
+                    "var ds = Ext.StoreManager.lookup('MyJsonPStore');",
+                    "ds.clearFilter() ;",
+                    "var dealRecord = this.getContactinfo().getRecord() ;",
+                    "//console.log(\"Deal Record is:\") ;",
+                    "//console.log(dealRecord) ;",
+                    "var customerId = dealRecord.get('customerId');",
+                    "//console.log(\"Customer Id is \" + customerId) ;",
+                    "ds.filter('customerId', customerId);",
+                    "",
+                    "var customerData = ds.getData().getAt(0) ;",
+                    "//console.log(\"Customer Data is:\") ;",
+                    "//console.log(customerData) ;",
+                    "",
+                    "var info = this.getContactinfo();",
+                    "info.setRecord(customerData);",
+                    "ds.clearFilter() ;",
+                    "Ext.Viewport.setActiveItem(info);",
+                    "",
+                    "//Ext.Viewport.setActiveItem('contactinfo') ;",
+                    "",
+                    "",
+                    "//var btn = document.getElementById('DeleteDeal');",
+                    "/*if(btn){",
+                    "btn.parentNode.removeChild(btn);",
+                    "\tconsole.log('Removing btn from deal back button');",
+                    "}*/",
+                    "var el = Ext.getCmp('ListOfDeals');",
+                    "if(el) {",
+                    "\tel.destroy();",
+                    "}",
+                    "\t\t//el.parentNode.removeChild(el);",
+                    "\t\tvar btn = Ext.getCmp('DeleteDeal');",
+                    "",
+                    "if(btn) {",
+                    "\t\t\tbtn.destroy();",
+                    "}",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "name": "onDealBackBtnTap",
+            "designerId": "0763678e-c846-4210-b4f5-5f610c744056"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "phoneNumber",
+                "selector": "textfield#phoneNumber"
+            },
+            "name": "phoneNumber",
+            "designerId": "e4904c87-4a35-4cdc-a394-8ecacc1d5486"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "address",
+                "selector": "textfield#address"
+            },
+            "name": "address",
+            "designerId": "33fc8322-ac07-4be1-8597-4005b50a7781"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "textfield#phoneNumber",
+                "designer|params": [
+                    "textfield",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.field.Text",
+                "fn": "onPhoneNumberFocus",
+                "implHandler": [
+                    "console.log(e);",
+                    "numberToDial = textfield.getValue();",
+                    "textfield.blur();",
+                    "e.destroy();",
+                    "e.stopEvent();",
+                    "window.location = 'tel:'+ numberToDial ;"
+                ],
+                "name": "focus"
+            },
+            "name": "onPhoneNumberFocus",
+            "designerId": "dd2cf2bb-a7c7-457a-a9ff-df73f53429f7"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "listofdeals",
+                "designer|targetType": "ListOfDeals",
+                "fn": "onListOfDealsItemTap",
+                "implHandler": [
+                    "",
+                    "if (e.target.type === 'checkbox') {",
+                    "",
+                    "\tvar store = Ext.getStore('MyDealsStore');",
+                    "",
+                    "",
+                    "var el=dataview.getParent();",
+                    "",
+                    "",
+                    "",
+                    "Ext.Viewport.setActiveItem(el);",
+                    "",
+                    "    var recordsToDelete = [];",
+                    "\tvar checkboxes = document.getElementsByName('checkbox');",
+                    "",
+                    "\tcheckboxes[index].addEventListener('change',function(){",
+                    "\t\t//console.log('Checkbox Changed' + index);",
+                    "",
+                    "\tif (checkboxes[index].checked) {",
+                    "",
+                    "       // console.log(recordsToDelete.length);",
+                    "\t\trecordsToDelete.push(record);",
+                    "",
+                    "",
+                    "  }",
+                    " else {",
+                    "",
+                    "       //console.log(recordsToDelete.length);",
+                    "\t   Ext.Array.remove(recordsToDelete,record);",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "\t   }",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "});",
+                    "\tvar btn = Ext.getCmp('DeleteDeal');",
+                    "",
+                    "\t\tbtn.addListener('tap', function(){",
+                    "",
+                    "",
+                    "\t\t\tstore.remove(recordsToDelete);",
+                    "",
+                    "",
+                    "",
+                    "});",
+                    "btn.addAfterListener('tap',function(){",
+                    "\tstore.remove(recordsToDelete);",
+                    "\t//btn.destroy();",
+                    "});",
+                    "",
+                    "/*if(btn) {",
+                    "     btn.addAfterListener('tap',function(){",
+                    "\t//store.loadPage(record)",
+                    "\tbtn.destroy();});",
+                    "\t//",
+                    "",
+                    "",
+                    " // });",
+                    "",
+                    "}*/",
+                    "",
+                    "}",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "else{",
+                    "",
+                    "\t//workaround to fix the warning of destroy element in deleteDeals",
+                    "var el = Ext.getCmp('ListOfDeals').destroy();",
+                    "\t\t//el.parentNode.removeChild(el);",
+                    "\t\tvar btn = Ext.getCmp('DeleteDeal');",
+                    "",
+                    "",
+                    "\t\t\tbtn.destroy();",
+                    "",
+                    "",
+                    "var pic = this.getDealpicture();",
+                    "/*console.log(\"Data View is: \") ;",
+                    "console.log(dataview) ;",
+                    "console.log(\"Index is: \" + index) ;",
+                    "console.log(\"Target is: \") ;",
+                    "console.log(target) ;",
+                    "console.log(\"Event is: \") ;",
+                    "console.log(e) ;",
+                    "console.log(\"Event Options is: \") ;",
+                    "console.log(eOpts) ;*/",
+                    "pic.setRecord(record);",
+                    "Ext.Viewport.setActiveItem(pic);",
+                    "",
+                    "",
+                    "}",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "itemtap"
+            },
+            "name": "onListOfDealsItemTap",
+            "designerId": "e374b0ee-8aa9-4764-84b9-256bd69c667c"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mycontainer1",
+                "selector": "container#mycontainer1",
+                "xtype": "favoriteview"
+            },
+            "name": "mycontainer1",
+            "designerId": "c3b7bb25-1281-4b0f-82c7-a9b31e6b1602"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "container#mycontainer1",
+                "designer|params": [
+                    "newActiveItem",
+                    "container",
+                    "oldActiveItem",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.Container",
+                "fn": "onMycontainer1Activate",
+                "implHandler": [
+                    "var store = Ext.getStore('UserPreferences');",
+                    "",
+                    "                var records= [];",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "                var ds = Ext.getStore('MyJsonPStore1');",
+                    "                ds.clearFilter();",
+                    "               //store.clearFilter();",
+                    "",
+                    "",
+                    "",
+                    "               store.each(function(rec)",
+                    "                {",
+                    "",
+                    "",
+                    "                        ",
+                    "                        if(rec.get('isFavorite')===true) {",
+                    "",
+                    "                            records.push(rec.get('customerId'));",
+                    "",
+                    "",
+                    "                        }",
+                    "                    else {",
+                    "                        Ext.Array.remove(records,rec.get('customerId'));",
+                    "                    }",
+                    "",
+                    "",
+                    "",
+                    "                });",
+                    "",
+                    "",
+                    "                ds.filterBy(function(record){",
+                    "                    return Ext.Array.indexOf(records, record.get('customerId')) !== -1;",
+                    "",
+                    "                                                      }, this);",
+                    "",
+                    ""
+                ],
+                "name": "activate"
+            },
+            "name": "onMycontainer1Activate",
+            "designerId": "dd83faa9-fdc3-4412-aed3-96593a7ce459"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "favoriteview",
+                "selector": "dataview#favoriteview"
+            },
+            "name": "favoriteview",
+            "designerId": "dc02fcd0-0e42-4ada-9613-8bcf4d935d66"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "editButton",
+                "selector": "button#editButton"
+            },
+            "name": "editButton",
+            "designerId": "eef90755-2251-4a45-b930-83ab9b940347"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "textfield#address",
+                "designer|params": [
+                    "textfield",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.field.Text",
+                "fn": "onAddressFocus",
+                "implHandler": [
+                    "console.log(textfield.getValue());",
+                    "var queryString = encodeURIComponent(textfield.getValue());",
+                    "var url = 'geo:0,0?q='  + queryString;",
+                    "textfield.blur();",
+                    "e.stopEvent();",
+                    "e.destroy();",
+                    "Ext.device.Device.openURL(url);"
+                ],
+                "name": "focus"
+            },
+            "name": "onAddressFocus",
+            "designerId": "4e5ada91-5430-401a-97d0-f17dc637be6d"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "dealsPanel",
+                "selector": "panel#dealsPanel"
+            },
+            "name": "dealsPanel",
+            "designerId": "a5eb4cc1-e70b-49a4-ad10-c1cf4e6e56ee"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "button#editButton",
+                "designer|params": [
+                    "button",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.Button",
+                "fn": "onEditButtonTap",
+                "implHandler": [
+                    "        var referrer = Ext.Viewport.getActiveItem();",
+                    "        var form = this.getContactform();",
+                    "        var info = this.getContactinfo();",
+                    "",
+                    "        form.referrer = referrer;",
+                    "        form.setRecord(info.getRecord());",
+                    "        Ext.Viewport.setActiveItem(form);",
+                    "        "
+                ],
+                "name": "tap"
+            },
+            "name": "onEditButtonTap",
+            "designerId": "b8f9bfa8-43cd-4040-b142-97ae12692539"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "contactform",
+                "selector": "contactform",
+                "xtype": "contactform"
+            },
+            "name": "contactform",
+            "designerId": "d36b83d4-9c87-4c98-b5e5-ddb921c89053"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "formCancelButton",
+                "selector": "button#formCancelButton"
+            },
+            "name": "formCancelButton",
+            "designerId": "497f689a-321f-402c-8574-bf37016ee25a"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "saveContactButton",
+                "selector": "button#saveContactButton"
+            },
+            "name": "saveContactButton",
+            "designerId": "ec6d4077-d90a-4531-bb5e-b45047b54e6d"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "button#saveContactButton",
+                "designer|params": [
+                    "button",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.Button",
+                "fn": "onSaveContactButtonTap",
+                "implHandler": [
+                    " var form = this.getContactform();",
+                    "        var errors = form.getValidationErrors();",
+                    "",
+                    "        if (errors.length) {",
+                    "            Ext.Msg.alert('Error', errors.join('<br/>'));",
+                    "        } else {",
+                    "",
+                    "            var record = form.getRecord();",
+                    "            var values;",
+                    "",
+                    "            var businessName = form.getAt(2).getValue();",
+                    "            var phoneNumber = form.getAt(3).getValue();",
+                    "            var address = form.getAt(4).getValue();",
+                    "            console.log(address);",
+                    "",
+                    "",
+                    "            if (record) {",
+                    "               record.set('businessName',businessName);",
+                    "                record.set('phoneNumber',phoneNumber);",
+                    "                record.set('address',address);",
+                    "                record.commit();",
+                    "                console.log(record.getData());",
+                    "                if (form.referrer) {",
+                    "                   form.referrer.setRecord(record);",
+                    "                }",
+                    "            }",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "           Ext.Viewport.setActiveItem(form.referrer);",
+                    "           delete form.referrer;",
+                    "        }",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "name": "onSaveContactButtonTap",
+            "designerId": "bfb208c8-0b49-4d57-bc02-ee99ad88e466"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "button#cancelButton",
+                "designer|params": [
+                    "button",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.Button",
+                "fn": "onCancelButtonTap",
+                "implHandler": [
+                    "var form = this.getContactform();",
+                    "        Ext.Viewport.setActiveItem(form.referrer);",
+                    "        delete form.referrer;",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "name": "onCancelButtonTap",
+            "designerId": "992fa483-594b-4e37-aeaf-228f032ba10f"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "backFromDealsPanelButton",
+                "selector": "button#backFromDealsPanelButton"
+            },
+            "name": "backFromDealsPanelButton",
+            "designerId": "80696260-a592-4d49-8e80-3bfbdf499879"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "button#BackFromDealsPanel",
+                "designer|targetType": "Ext.Button",
+                "fn": "onBackFromDealsPanelTap",
+                "implHandler": [
+                    "",
+                    "",
+                    "var ds = Ext.StoreManager.lookup('MyJsonPStore');",
+                    "ds.clearFilter() ;",
+                    "var dealRecord = this.getContactinfo().getRecord() ;",
+                    "//console.log(\"Deal Record is:\") ;",
+                    "//console.log(dealRecord) ;",
+                    "var customerId = dealRecord.get('customerId');",
+                    "//console.log(\"Customer Id is \" + customerId) ;",
+                    "ds.filter('customerId', customerId);",
+                    "",
+                    "var customerData = ds.getData().getAt(0) ;",
+                    "//console.log(\"Customer Data is:\") ;",
+                    "//console.log(customerData) ;",
+                    "",
+                    "var info = this.getContactinfo();",
+                    "info.setRecord(customerData);",
+                    "ds.clearFilter() ;",
+                    "Ext.Viewport.setActiveItem(info);",
+                    "",
+                    "//workaround to fix the warning of destroy element in deleteDeals",
+                    "var el = Ext.getCmp('ListOfDeals').destroy();",
+                    "//el.parentNode.removeChild(el);",
+                    "var btn = Ext.getCmp('DeleteDeal');",
+                    "",
+                    "",
+                    "\tbtn.destroy();",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "name": "onBackFromDealsPanelTap",
+            "designerId": "d63deb76-5083-4242-9df9-337a628276d3"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "uploadDealBtn",
+                "selector": "button#uploadDealBtn"
+            },
+            "name": "uploadDealBtn",
+            "designerId": "11adcfe4-1007-466f-a349-e1ddd7d497bb"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "button#UploadDeal",
+                "designer|params": [
+                    "button",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.Button",
+                "fn": "onUploadDealTap",
+                "implHandler": [
+                    "var actionSheet = new Ext.ActionSheet({",
+                    "\t\titems: [{",
+                    "\t\t\ttext: 'Camera',",
+                    "\t\t\tscope : this,",
+                    "\t\t\thandler : function(){",
+                    "\t\t\t\tactionSheet.hide();",
+                    "                /* phonegap camera */",
+                    "                navigator.camera.getPicture(uploadPhoto,null,{sourceType:1,quality:60});",
+                    "                function uploadPhoto(data){",
+                    "                // this is where you would send the image file to server",
+                    "",
+                    "                //output image to screen",
+                    "                cameraPic.src = \"data:image/jpeg;base64,\" + data;",
+                    "",
+                    "                navigator.notification.alert(",
+                    "                    'Your Photo has been uploaded', // message",
+                    "                       okay,                           // callback",
+                    "                    'Photo Uploaded',               // title",
+                    "                    'OK'                            // buttonName",
+                    "                );",
+                    "",
+                    "               function okay(){",
+                    "                    // Do something",
+                    "                }",
+                    "              }",
+                    "\t\t\t}",
+                    "        },{",
+                    "        text : 'Photo Album',",
+                    "        scope : this,",
+                    "        handler : function(){",
+                    "            actionSheet.hide();",
+                    "            navigator.camera.getPicture(uploadPhoto,null,{sourceType:Camera.PictureSourceType.PHOTOLIBRARY,quality:60});",
+                    "             function uploadPhoto(data){",
+                    "                // this is where you would send the image file to server",
+                    "",
+                    "                //output image to screen",
+                    "                cameraPic.src = \"data:image/jpeg;base64,\" + data;",
+                    "",
+                    "                navigator.notification.alert(",
+                    "                    'Your Photo has been uploaded', // message",
+                    "                       okay,                           // callback",
+                    "                    'Photo Uploaded',               // title",
+                    "                    'OK'                            // buttonName",
+                    "                );",
+                    "",
+                    "               function okay(){",
+                    "                    // Do something",
+                    "                }",
+                    "              }",
+                    "        }",
+                    "     }",
+                    "   ]",
+                    "",
+                    " });",
+                    "Ext.Viewport.add(actionSheet);",
+                    "        actionSheet.show();"
+                ],
+                "name": "tap"
+            },
+            "name": "onUploadDealTap",
+            "designerId": "3f96c7de-2c48-4f97-81ea-1e252e9080cf"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "deleteDealBtn",
+                "selector": "button#deleteDealBtn"
+            },
+            "name": "deleteDealBtn",
+            "designerId": "627cee4f-bd65-4be2-bbf2-cc3e90adead1"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "button#DeleteDeal",
+                "designer|params": [
+                    "button",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.Button",
+                "fn": "onDeleteDealTap",
+                "implHandler": [
+                    "   var el = document.getElementById('ListOfDeals');",
+                    "   el.setAttribute('class','checkbox_visible');",
+                    "",
+                    "",
+                    "  ",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "name": "onDeleteDealTap",
+            "designerId": "63d8d882-f6d3-4a69-83a0-fef642b8d658"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "share",
+                "selector": "button#share"
+            },
+            "name": "share",
+            "designerId": "264e3ddc-ea0b-4595-9335-6fde3fcebad5"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "button#share",
+                "designer|params": [
+                    "button",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.Button",
+                "fn": "onShareTap",
+                "implHandler": [
+                    "window.plugins.socialsharing('Message via Facebook', null /* img */, null /* url */, function() {console.log('share ok');}, function(errormsg){alert(errormsg);});"
+                ],
+                "name": "tap"
+            },
+            "name": "onShareTap",
+            "designerId": "c22e080b-8e9c-4566-88c4-475a95f016f9"
+        }
+    ]
+}

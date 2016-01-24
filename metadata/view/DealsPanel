@@ -1,0 +1,135 @@
+{
+    "type": "Ext.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "DealsPanel",
+        "designer|userClassName": "DealsPanel",
+        "id": null,
+        "itemId": "dealsPanel",
+        "minHeight": "100%",
+        "padding": "5 5 5 5",
+        "style": "border:1px inset"
+    },
+    "name": "MyPanel2",
+    "designerId": "d4764d2e-c8e8-43dc-80d9-21aa4125e50d",
+    "cn": [
+        {
+            "type": "Ext.Toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|uiInterfaceName": "light",
+                "docked": "top",
+                "ui": "light"
+            },
+            "name": "MyToolbar3",
+            "designerId": "21e7a6be-3c8a-474a-929a-e5d3a8df1d61",
+            "cn": [
+                {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "back",
+                        "itemId": "BackFromDealsPanel",
+                        "text": "Back",
+                        "ui": "back"
+                    },
+                    "name": "MyButton5",
+                    "designerId": "7d8fc8d4-71fd-45b2-be72-0ed775abdbf7"
+                }
+            ]
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "listofdeals"
+            },
+            "name": "listofdeals",
+            "designerId": "16f0bd9e-c524-49dc-a0a0-23ed8fe3c88d",
+            "masterInstanceId": "f8e0fb41-f63c-434c-a4fb-6d0dfbc805af"
+        },
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "bottom",
+                "layout": "hbox"
+            },
+            "name": "MyContainer1",
+            "designerId": "9dc907ec-07ce-4c1d-83a9-207b36cb9cb9",
+            "cn": [
+                {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "confirm-small",
+                        "itemId": "UploadDeal",
+                        "layout|flex": 1,
+                        "text": "Upload New Deal",
+                        "ui": "confirm-small",
+                        "width": 170
+                    },
+                    "name": "MyButton6",
+                    "designerId": "3fa52449-8eab-4bcc-8cf7-b49a10192809"
+                },
+                {
+                    "type": "Ext.Spacer",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": 0.1,
+                        "width": 10
+                    },
+                    "name": "MySpacer3",
+                    "designerId": "1a8e9be6-9d6b-40b3-8624-f0b027a927f5"
+                },
+                {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "DeleteDeal",
+                        "designer|uiInterfaceName": "decline-small",
+                        "id": "DeleteDeal",
+                        "itemId": "DeleteDeal",
+                        "layout|flex": 1,
+                        "text": "Delete",
+                        "ui": "decline-small"
+                    },
+                    "name": "MyButton7",
+                    "designerId": "30943c31-cb0e-400a-8e61-eafa29294135"
+                }
+            ]
+        }
+    ]
+}
