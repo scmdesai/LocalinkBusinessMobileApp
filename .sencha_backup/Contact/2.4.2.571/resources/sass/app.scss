@@ -1,0 +1,16 @@
+// The following two lines import the default Sencha Touch theme. If you are building
+// a new theme, remove them and the add your own CSS on top of the base CSS (which
+// is already included in your app.json file).
+@import 'sencha-touch/default';
+@import 'sencha-touch/default/all';
+@import '..\touch\resources\themes\stylesheets\sencha-touch\default';
+
+// Custom code goes here..
+
+// Examples of using the icon mixin:
+// @include icon('user');
+@include font-face('Social-Media-Icons', inline-font-files('Social-Media-Icons.woff', woff, 'Social-Media-Icons.ttf', truetype, 'Social-Media-Icons.svg',svg));
+@include icon('icon-facebook2', '\e900', 'Social-Media-Icons');
+@include icon('icon-whatsapp', '\e901', 'Social-Media-Icons');
+@include icon('icon-twitter', '\e902', 'Social-Media-Icons');
+@include icon('icon-bubble2', '\e903', 'Social-Media-Icons');

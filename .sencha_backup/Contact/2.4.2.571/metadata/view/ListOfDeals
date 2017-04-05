@@ -1,0 +1,80 @@
+{
+    "type": "Ext.dataview.List",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "cls": [
+            "tpl-29v0zg8q"
+        ],
+        "deselectOnContainerClick": false,
+        "designer|userAlias": "listofdeals",
+        "designer|userClassName": "ListOfDeals",
+        "height": "100%",
+        "id": "ListOfDeals",
+        "itemCls": "listofdeals",
+        "itemId": "ListOfDeals",
+        "margin": null,
+        "mode": "MULTI",
+        "onItemDisclosure": false,
+        "pinHeaders": false,
+        "preventSelectionOnDisclose": false,
+        "refreshHeightOnUpdate": false,
+        "store": "MyDealsStore",
+        "striped": true,
+        "style": "font-size: 10px",
+        "useSimpleItems": false
+    },
+    "name": "MyList1",
+    "designerId": "f8e0fb41-f63c-434c-a4fb-6d0dfbc805af",
+    "cn": [
+        {
+            "type": "Ext.XTemplate",
+            "reference": {
+                "name": "itemTpl",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "itemTpl",
+                "implHandler": [
+                    "<div style=\"font-size:20px\" >{dealName}<input type=\"checkbox\" class=\"checkbox_hidden\" name=\"checkbox\" style=\"zoom:2;float:right;\" id= \"chkbx\" ></div>",
+                    "",
+                    "",
+                    "<div style=\"color:#0000FF;font-size:12px;font-style:italics\">{dealStartDate} - {dealEndDate}</div>",
+                    ""
+                ]
+            },
+            "name": "itemTpl",
+            "designerId": "934d6a84-9570-4eb4-b57f-89e366d383e2",
+            "cn": [
+                {
+                    "type": "tplscss",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "listofdeals",
+                        "implHandler": [
+                            ".checkbox_hidden {",
+                            "\tdisplay:none;",
+                            "}",
+                            "",
+                            ".checkbox_visible {",
+                            "\tdisplay:normal;",
+                            "\t",
+                            "}",
+                            ""
+                        ]
+                    },
+                    "name": "scss1",
+                    "designerId": "edad2254-6756-4426-91f5-afb4761b90ba"
+                }
+            ]
+        }
+    ]
+}

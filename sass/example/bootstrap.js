@@ -1572,7 +1572,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.Element-static": "../../touch/src/dom/Element.static.js",
   "Ext.Element-style": "../../touch/src/dom/Element.style.js",
   "Ext.Element-traversal": "../../touch/src/dom/Element.traversal.js",
-  "Ext.cmd": "../../../../../Tools/Sencha_Cmd/6.0.0.202/plugins/src",
+  "Ext.cmd": "../../../../Tools/Sencha_Cmd/6.0.0.202/plugins/src",
   "Ext.core.DomQuery": "../../touch/src/dom/Query.js",
   "Ext.device.Purchases.Product": "../../touch/src/device/purchases/Sencha.js",
   "Ext.device.filesystem.DirectoryEntry": "../../touch/src/device/filesystem/Sencha.js",
@@ -1599,12 +1599,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "Contact.view.DealPicture": [
     "dealPicture"
   ],
-  "Contact.view.FavoriteView": [],
+  "Contact.view.DealsPanel": [],
+  "Contact.view.Form": [],
   "Contact.view.Info": [],
   "Contact.view.List": [],
   "Contact.view.ListOfDeals": [],
   "Contact.view.Main": [],
-  "Contact.view.Main1": [],
   "Contact.view.Picture": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
@@ -2242,8 +2242,11 @@ Ext.ClassManager.addNameAliasMappings({
   "Contact.view.DealPicture": [
     "widget.dealpicture"
   ],
-  "Contact.view.FavoriteView": [
-    "widget.favoriteview"
+  "Contact.view.DealsPanel": [
+    "widget.DealsPanel"
+  ],
+  "Contact.view.Form": [
+    "widget.contactform"
   ],
   "Contact.view.Info": [
     "widget.contactinfo"
@@ -2255,7 +2258,6 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.listofdeals"
   ],
   "Contact.view.Main": [],
-  "Contact.view.Main1": [],
   "Contact.view.Picture": [
     "widget.contactpic"
   ],
